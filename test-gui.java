@@ -1,6 +1,9 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import static javax.swing.JOptionPane.*;
 
 public class Main {
     
@@ -33,9 +36,13 @@ public class Main {
 
         f.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                f.dispose();
+                if (showConfirmDialog(f, "Are you sure you want to exit?", "Exiting Application!", YES_NO_OPTION, WARNING_MESSAGE) == YES_OPTION) {
+                    f.dispose();
+                }
+
             }
         });
+
 
     }
 }
