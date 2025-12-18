@@ -1,11 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.Action;
-
 import static javax.swing.JOptionPane.*;
 
-public class Gui {
+public class testGui {
     Checkbox c2, c3, c4;
     Label l1;
 
@@ -14,7 +12,7 @@ public class Gui {
 
         l1 = new Label("Select option");
 
-        l1.setBounds(150, 50, 280, 80);
+        l1.setBounds(150, 50, 380, 80);
         f.add(l1);
 
         c2 = new Checkbox("1");
@@ -118,6 +116,23 @@ public class Gui {
             }
         });
 
+        TextArea t1 = new TextArea("", 500, 100, TextArea.SCROLLBARS_VERTICAL_ONLY);
+        t1.setBounds(150, 400, 380, 100);
+        f.add(t1);
+        t1.setSelectionStart(0);
+        t1.setSelectionEnd(t1.getText().length());
+
+        Button b2 = new Button("Save Text");
+        b2.setBounds(150, 850, 80, 50);
+        f.add(b2);
+
+        b2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                l1.setText("You have clicked the button");
+            }
+        });
+
+
         f.setSize(500, 500);
         f.setLayout(null);
         f.setVisible(true);
@@ -133,7 +148,7 @@ public class Gui {
     }
 
     public static void main(String ar[]) {
-        Gui g = new Gui();
+        testGui g = new testGui();
         g.TestGui();
     }
 
