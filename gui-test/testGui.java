@@ -2,13 +2,15 @@ import java.awt.*;
 import java.awt.event.*;
 import static javax.swing.JOptionPane.*;
 
+
 public class testGui {
     Checkbox c2, c3, c4;
     Label l1;
     String SavedText;
+    Color DefaultButtonColour;
 
     public void TestGui() {
-        Frame f = new Frame("Custom Checkbox application");
+        Frame f = new Frame("Custom GUI testing application");
 
         l1 = new Label("Select option");
 
@@ -111,7 +113,7 @@ public class testGui {
         f.add(b1);
 
         b1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 l1.setText("You have clicked the button");
             }
         });
@@ -121,14 +123,34 @@ public class testGui {
         f.add(t1);
         t1.setSelectionStart(0);
         t1.setSelectionEnd(t1.getText().length());
+        
+        t1.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_A && e.isControlDown()) {
+                    t1.selectAll();
+                }
+            }
+        });
+        
 
         Button b2 = new Button("Click to save text");
         b2.setBounds(150, 500, 150, 50);
         f.add(b2);
+        DefaultButtonColour = b2.getBackground();
 
         b2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 SavedText = t1.getText();
+                b2.setBackground(Color.green);
+                b2.setLabel("Text Saved");
+                try {
+                    Thread.sleep(700); 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                b2.setBackground(DefaultButtonColour);
+                b2.setLabel("Click to save text");
+
             }
         });
 
@@ -137,8 +159,17 @@ public class testGui {
         f.add(b3);
 
         b3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 l1.setText(SavedText);
+                b3.setBackground(Color.green);
+                b3.setLabel("Text Recalled");
+                try {
+                    Thread.sleep(700); 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                b3.setBackground(DefaultButtonColour);
+                b3.setLabel("Click to recall saved text");
             }
         });
 
@@ -148,7 +179,7 @@ public class testGui {
         f.setVisible(true);
 
         f.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent event) {
                 if (showConfirmDialog(f, "Are you sure you want to exit?", "Exiting Application!", YES_NO_OPTION, WARNING_MESSAGE) == YES_OPTION) {
                     System.exit(0);
                 }
