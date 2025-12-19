@@ -1,11 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.Action;
 import static javax.swing.JOptionPane.*;
 
 public class testGui {
     Checkbox c2, c3, c4;
     Label l1;
+    String SavedText;
 
     public void TestGui() {
         Frame f = new Frame("Custom Checkbox application");
@@ -122,18 +122,28 @@ public class testGui {
         t1.setSelectionStart(0);
         t1.setSelectionEnd(t1.getText().length());
 
-        Button b2 = new Button("Save Text");
-        b2.setBounds(150, 850, 80, 50);
+        Button b2 = new Button("Click to save text");
+        b2.setBounds(150, 500, 150, 50);
         f.add(b2);
 
         b2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                l1.setText("You have clicked the button");
+                SavedText = t1.getText();
+            }
+        });
+
+        Button b3 = new Button("Click to recall saved text");
+        b3.setBounds(300, 500, 200, 50);
+        f.add(b3);
+
+        b3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                l1.setText(SavedText);
             }
         });
 
 
-        f.setSize(500, 500);
+        f.setSize(800, 800);
         f.setLayout(null);
         f.setVisible(true);
 
