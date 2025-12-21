@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import static javax.swing.JOptionPane.*;
 
 
@@ -131,14 +132,14 @@ public class testGui {
                 }
             }
         });
-        
+
 
         Button b2 = new Button("Click to save text");
         b2.setBounds(150, 500, 150, 50);
         f.add(b2);
         DefaultButtonColour = b2.getBackground();
 
-        b2.addActionListener(new ActionListener() {
+         b2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 SavedText = t1.getText();
                 b2.setBackground(Color.green);
@@ -174,6 +175,38 @@ public class testGui {
         });
 
 
+        List list1 = new List(5);
+        list1.setBounds(150, 600, 380, 100);
+        f.add(list1);
+
+        list1.add("Item 1");
+        list1.add("Item 2");
+        list1.add("Item 3");
+        list1.add("Item 4");
+        list1.add("Item 5");
+        
+        list1.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                l1.setText("You have selected " + list1.getSelectedItem());
+            }
+        });
+
+
+        Choice c = new Choice();
+        c.add("Option 1");
+        c.add("Option 2");
+        c.add("Option 3");
+        c.add("Option 4");
+        c.add("Option 5");
+        c.setBounds(150, 700, 100, 20);
+        f.add(c);
+
+        c.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                l1.setText("You have selected " + c.getSelectedItem());
+            }
+        });
+        
         f.setSize(800, 800);
         f.setLayout(null);
         f.setVisible(true);
