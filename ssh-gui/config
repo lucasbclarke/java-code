@@ -1,7 +1,0 @@
-terminal = ghostty
-
-server 1 = terminal.shop
-server 2 = bandit.labs.overthewire.org
-
-server 1 name = SSH Coffee
-server 2 name = OverTheWire
